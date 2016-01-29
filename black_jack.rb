@@ -1,8 +1,8 @@
 require 'bundler'
 Bundler.require
 
-class Dealer
-
+class Player
+  def 
 end
 
 class Card

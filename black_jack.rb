@@ -13,7 +13,9 @@ class Game
         player.cards << @dealer.deal
       end
     end
-    @players.each(&:play)
+    @players.each do |p|
+      p.play(@dealer)
+    end
     who_is_winner
   end
   def who_is_winner
@@ -55,7 +57,7 @@ class Player
     stand
   end
 
-  def play
+  def play(dealer)
     while want_card?
       @cards << dealer.deal
     end

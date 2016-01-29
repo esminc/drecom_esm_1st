@@ -1,5 +1,12 @@
 require_relative '../black_jack'
 
+describe Game do
+  let(:players){ [ Player.new ] }
+  it "" do 
+    expect(Game.new(players).start).to eq players.first
+  end
+end
+
 describe Card do
   describe '#point' do
     let(:number) { 11 }

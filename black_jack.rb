@@ -2,11 +2,9 @@ require 'bundler'
 Bundler.require
 
 class Game
-  def initialize
+  def initialize(players)
     @dealer = Dealer.new
-    @players = 1.times.map do
-      Player.new
-    end
+    @players = players
   end
 
   def start
@@ -15,7 +13,7 @@ class Game
         player.cards << @dealer.deal
       end
     end
-    @players.each(&:play)
+    @players.each(&:play).first
   end
 end
 

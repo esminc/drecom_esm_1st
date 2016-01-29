@@ -2,45 +2,42 @@ require 'bundler'
 Bundler.require
 
 class Game
-  def initialize(players = [])
-    @dealer = Dealer.new
+  def initialize(players)
     @players = players
   end
 
-  def start
-    @dealer.setup
-
+  def setup_cards
+    @all_cards = get_all_cards
+  end
+  def get_all_cards
+    [:spade, :heart, :clover, :daiya].map do |mark|
+      (1..13).map { |num| Card.new(num, mark) }
+    end.flatten.shuffle
+  end
+  def setup
     2.times do
       @players.each do |player|
-        deal(player)
+        player.cards << deal
       end
     end
-
+  end
+  def start
     @players.each do |p|
-      deal(p) while p.want_card?
+      p.play(self)
     end
     who_is_winner
   end
-
   def who_is_winner
-    @players.sort_by(&:calc).last
+    @players.sort_by do |player|
+      player.calc
+    end.last
   end
 
-  private
-
-  def deal(player)
-    player.cards << @dealer.deal
-  end
 end
 
 class Dealer
-  def initialize
-  end
 
   def setup
-    @all_cards = [:spade, :heart, :clover, :daiya].map do |mark|
-      @cards = (1..13).map { |num| Card.new(num, mark) }
-    end.flatten.shuffle
   end
 
   def deal
@@ -50,7 +47,6 @@ end
 
 class Player
   attr_accessor :cards
-  attr_accessor :dealer
 
   def initialize(cards = [])
     @cards = cards
@@ -67,8 +63,10 @@ class Player
     stand
   end
 
-  def play(dealer)
-    @cards << dealer.deal
+  def play(game)
+    while want_card?
+      @cards << game.deal
+    end
   end
 
   def want_card?

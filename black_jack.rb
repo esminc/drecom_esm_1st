@@ -1,6 +1,10 @@
 require 'bundler'
 Bundler.require
 
+class Dealer
+
+end
+
 class Card
   attr_accessor :number
   attr_accessor :mark
@@ -18,6 +22,7 @@ class Card
   end
 end
 
-[:spade, :heart, :clover, :daiya].map do |mark|
+all_cards = [:spade, :heart, :clover, :daiya].map do |mark|
 	cards = (1..13).map {|num| Card.new(num, mark) }
 end
+hand_cards = all_cards.pop(2)

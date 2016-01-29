@@ -19,4 +19,19 @@ describe Player do
 
     it { is_expected.to eq 10 }
   end
+
+  describe "#buta?" do
+    let(:player) { Player.new } 
+    subject { player.buta? }
+    it { should eq false}
+
+    describe "is buta" do
+      before {
+        player.cards << Card.new(100, :spade)
+      }
+      
+
+       it { expect(player.buta?).to eq true}
+    end
+  end
 end

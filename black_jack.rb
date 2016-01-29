@@ -30,7 +30,7 @@ class Dealer
 end
 
 class Player
-  def initialize(cards)
+  def initialize(cards = nil)
     @cards = cards
   end
 

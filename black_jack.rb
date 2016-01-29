@@ -4,20 +4,22 @@ Bundler.require
 class Game
   def initialize
     @dealer = Dealer.new
-    @players = 3.times.map do
+    @players = 1.times.map do
       Player.new
     end
   end
 
   def start
-    @players.each do |player|
-      player.cards << @dealer.deal
+    2.times do
+      @players.each do |player|
+        player.cards << @dealer.deal
+      end
     end
     @players.each(&:play)
   end
 end
 
-class Dealer < Player
+class Dealer
   def initialize
     @all_cards = [:spade, :heart, :clover, :daiya].map do |mark|
       @cards = (1..13).map { |num| Card.new(num, mark) }
@@ -43,10 +45,13 @@ class Player
   end
 
   def play
-    if bust?
-    else
+    while want_card?
       @cards << dealer.deal
     end
+  end
+
+  def want_card?
+    stand > 16
   end
 
   def bust?

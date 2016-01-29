@@ -51,12 +51,13 @@ class Player
 
   def stand
     # 全部 10 と判断する
-    @is_1, @not_1 = @cards.partition {|e| e.number == 1 }
-    @is_1.count.times.map do |i|
-      (@is_1.count - i) * 11 + i + @not_1.sum(&:number)
-    end.select do |point|
-      point <= 21
-    end.max || 10000
+    is_1, not_1 = @cards.compact.partition {|e| e.number == 1 }
+    min_point = is_1.count + not_1.sum(&:number)
+    if is_1.count > 0 && 10 + min_point <= 21
+      min_point + 10
+    else
+      min_point
+    end
   end
 
   def choice_point

@@ -15,6 +15,12 @@ class Game
     end
     @players.each(&:play).first
   end
+  def who_is_winner
+    @players.each do |player|
+      player.stand
+    end
+  end
+
 end
 
 class Dealer

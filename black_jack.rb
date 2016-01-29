@@ -4,17 +4,21 @@ Bundler.require
 class Game
   def initialize(players)
     @players = players
+    setup
   end
 
   def setup_cards
     @all_cards = get_all_cards
   end
+
   def get_all_cards
     [:spade, :heart, :clover, :daiya].map do |mark|
       (1..13).map { |num| Card.new(num, mark) }
     end.flatten.shuffle
   end
+
   def setup
+    setup_cards
     2.times do
       @players.each do |player|
         player.cards << deal
@@ -33,6 +37,9 @@ class Game
     end.last
   end
 
+  def deal
+    @all_cards.pop
+  end
 end
 
 class Dealer

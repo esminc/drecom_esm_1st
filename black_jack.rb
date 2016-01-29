@@ -2,8 +2,8 @@ require 'bundler'
 Bundler.require
 
 class Game
-  def initialize(players)
-    @dealer = players[0].extend(DealerXXX)
+  def initialize(players = [])
+    @dealer = Dealer.new
     @players = players
   end
 
@@ -17,10 +17,13 @@ class Game
     end
 
     @players.each do |p|
-      p.play(@dealer)
+      while p.want_card?
+        deal(p)
+      end
     end
     who_is_winner
   end
+
   def who_is_winner
     @players.sort_by do |player|
       player.calc
@@ -69,9 +72,7 @@ class Player
   end
 
   def play(dealer)
-    while want_card?
-      @cards << dealer.deal
-    end
+    @cards << dealer.deal
   end
 
   def want_card?

@@ -52,11 +52,11 @@ class Player
   def stand
     # 全部 10 と判断する
     @is_1, @not_1 = @cards.partition {|e| e.number == 1 }
-    @is_1.count
-
-    @points = @cards.flatten.inject(0) do|point, card|
-        point + card.point
-    end
+    @is_1.count.times.map do |i|
+      (@is_1.count - i) * 11 + i + @not_1.sum(&:number)
+    end.select do |point|
+      point <= 21
+    end.max || 10000
   end
 
   def choice_point

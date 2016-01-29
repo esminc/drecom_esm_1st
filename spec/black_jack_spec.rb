@@ -21,15 +21,14 @@ describe Player do
   end
 
   describe "#buta?" do
-    let(:player) { Player.new } 
+    let(:player) { Player.new }
     subject { player.buta? }
     it { should eq false}
 
-    describe "is buta" do
+    context "is buta" do
       before {
         player.cards << Card.new(100, :spade)
       }
-      
 
        it { expect(player.buta?).to eq true}
     end

@@ -30,7 +30,9 @@ class Dealer
 end
 
 class Player
-  def initialize(cards = nil)
+  attr_accessor :cards
+
+  def initialize(cards = [])
     @cards = cards
   end
 
@@ -48,7 +50,7 @@ class Player
   end
 
   def buta?
-    false
+    open < 21
   end
 end
 

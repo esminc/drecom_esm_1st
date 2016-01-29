@@ -4,7 +4,6 @@ Bundler.require
 class Game
   def initialize(players)
     @players = players
-    setup
   end
 
   def setup_cards
@@ -35,16 +34,6 @@ class Game
     @players.sort_by do |player|
       player.calc
     end.last
-  end
-
-  def deal
-    @all_cards.pop
-  end
-end
-
-class Dealer
-
-  def setup
   end
 
   def deal

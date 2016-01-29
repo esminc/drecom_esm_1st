@@ -3,7 +3,17 @@ require_relative '../black_jack'
 describe Game do
   let(:players) { [Player.new, Player.new] }
   it '' do
-    expect(Game.new(players).start).to eq players.first
+    game = Game.new(players)
+
+    allow(game).to receive(:get_all_cards) {
+      [:spade, :heart, :clover, :daiya].map do |mark|
+        (1..13).map { |num| Card.new(num, mark) }
+      end.flatten
+    }
+
+    game.setup
+
+    expect(game.start).to eq players.last
   end
 end
 

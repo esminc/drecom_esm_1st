@@ -1,10 +1,28 @@
 require 'bundler'
 Bundler.require
 
+class Game
+  def initialize
+    @dealer = Dealer.new
+    @players = 3.times.map do
+       Player.new
+    end
+  end
+  
+  def start
+    @players.each do |player|
+      player.cards << @dealer.deal
+    end
+    @players.each do |player|
+       player.play
+  end
+end
+
 class Dealer
   def initialize
     @all_cards = [:spade, :heart, :clover, :daiya].map do |mark|
   	@cards = (1..13).map {|num| Card.new(num, mark) }
+    end
   end
 
   def deal

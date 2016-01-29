@@ -3,17 +3,19 @@ Bundler.require
 
 class Game
   def initialize(players)
-    @dealer = Dealer.new
+    @dealer = players[0].extend(DealerXXX)
     @players = players
   end
 
   def start
     @dealer.setup
+
     2.times do
       @players.each do |player|
-        player.cards << @dealer.deal
+        deal(player)
       end
     end
+
     @players.each do |p|
       p.play(@dealer)
     end
@@ -25,6 +27,11 @@ class Game
     end.last
   end
 
+  private
+
+  def deal(player)
+    player.cards << @dealer.deal
+  end
 end
 
 class Dealer

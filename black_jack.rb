@@ -13,7 +13,8 @@ class Game
         player.cards << @dealer.deal
       end
     end
-    @players.each(&:play).first
+    @players.each(&:play)
+    who_is_winner
   end
   def who_is_winner
     @players.sort_by do |player|
@@ -27,16 +28,17 @@ class Dealer
   def initialize
     @all_cards = [:spade, :heart, :clover, :daiya].map do |mark|
       @cards = (1..13).map { |num| Card.new(num, mark) }
-    end.flatten
+    end.flatten.shuffle
   end
 
   def deal
-    hand_cards = @all_cards.pop(2)
+    @all_cards.pop
   end
 end
 
 class Player
   attr_accessor :cards
+  attr_accessor :dealer
 
   def initialize(cards = [])
     @cards = cards

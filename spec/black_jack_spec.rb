@@ -1,8 +1,9 @@
 require_relative '../black_jack'
 
 describe Game do
-  let(:players){ [ Player.new ] }
-  it "" do 
+  let(:dealer)
+  let(:players){ [ Player.new, Player.new ] }
+  it "" do
     expect(Game.new(players).start).to eq players.first
   end
 end

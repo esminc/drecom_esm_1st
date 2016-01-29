@@ -1,3 +1,4 @@
+require "active_support/all"
 require 'bundler'
 Bundler.require
 
@@ -49,9 +50,15 @@ class Player
   end
 
   def stand
-    @cards.flatten.inject(0) do|point, card|
-      point + card.point
+    # 全部 10 と判断する
+    @is_1, @not_1 = @cards.partition {|e| e.number == 1 }
+
+    @points = @cards.flatten.inject(0) do|point, card|
+        point + card.point
     end
+  end
+
+  def choice_point
   end
 
   def calc

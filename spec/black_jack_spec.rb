@@ -1,12 +1,11 @@
 require_relative "../black_jack"
 
 describe Card do
-  describe "#number" do
-    let(:card) { }
-    it { expect(1).to eq 1 }
-  end
+  describe "#point" do
+    let(:number) {11}
+    let(:mark) { :spade }
+    let(:card) { Card.new(number, mark) }
 
-  describe "#point" do |variable|
-    
+    it { expect(card.point).to eq 10 }
   end
 end

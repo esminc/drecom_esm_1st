@@ -1,8 +1,8 @@
 require_relative '../black_jack'
 
 describe Game do
-  let(:players){ [ Player.new, Player.new ] }
-  it "" do
+  let(:players) { [Player.new, Player.new] }
+  it '' do
     expect(Game.new(players).start).to eq players.first
   end
 end
@@ -29,35 +29,35 @@ describe Player do
     it { is_expected.to eq 10 }
   end
 
-  describe "#bust?" do
+  describe '#bust?' do
     subject { player.bust? }
-    it { should eq false}
+    it { should eq false }
 
-    context "is bust?" do
-      before {
+    context 'is bust?' do
+      before do
         player.cards << Card.new(10, :spade)
         player.cards << Card.new(10, :spade)
         player.cards << Card.new(10, :spade)
-      }
+      end
 
-      it { expect(player.bust?).to eq true}
+      it { expect(player.bust?).to eq true }
     end
   end
 
-  describe "want_card?" do
+  describe 'want_card?' do
     subject { player.want_card? }
-    context "buta?" do
-      before {
+    context 'buta?' do
+      before do
         player.cards << Card.new(10, :spade)
         player.cards << Card.new(10, :spade)
-      }
-      it { should eq false}
+      end
+      it { should eq false }
     end
-    context "not buta?" do
-      before {
+    context 'not buta?' do
+      before do
         player.cards << Card.new(10, :spade)
-      }
-      it { should eq true}
+      end
+      it { should eq true }
     end
   end
 end

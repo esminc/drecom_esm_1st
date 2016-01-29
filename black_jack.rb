@@ -17,17 +17,13 @@ class Game
     end
 
     @players.each do |p|
-      while p.want_card?
-        deal(p)
-      end
+      deal(p) while p.want_card?
     end
     who_is_winner
   end
 
   def who_is_winner
-    @players.sort_by do |player|
-      player.calc
-    end.last
+    @players.sort_by(&:calc).last
   end
 
   private

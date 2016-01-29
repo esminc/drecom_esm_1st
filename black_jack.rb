@@ -52,6 +52,7 @@ class Player
   def stand
     # 全部 10 と判断する
     @is_1, @not_1 = @cards.partition {|e| e.number == 1 }
+    @is_1.count
 
     @points = @cards.flatten.inject(0) do|point, card|
         point + card.point

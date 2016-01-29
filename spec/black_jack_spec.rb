@@ -37,6 +37,14 @@ describe Player do
     subject { player.stand }
 
     it { is_expected.to eq 10 }
+    context {
+      let(:cards) {[1,1,10].map{|n| Card.new(n, :spade)}}
+      it { is_expected.to eq 12 }
+    }
+    context {
+      let(:cards) {[1,10].map{|n| Card.new(n, :spade)}}
+      it { is_expected.to eq 21 }
+    }
   end
 
   describe '#bust?' do

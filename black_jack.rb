@@ -16,9 +16,9 @@ class Game
     @players.each(&:play).first
   end
   def who_is_winner
-    @players.each do |player|
-      player.stand
-    end
+    @players.sort_by do |player|
+      player.calc
+    end.last
   end
 
 end
@@ -46,6 +46,11 @@ class Player
     @cards.flatten.inject(0) do|point, card|
       point + card.point
     end
+  end
+
+  def calc
+    return -1 if bust?
+    stand
   end
 
   def play

@@ -37,12 +37,9 @@ class Player
   end
 
   def stand
-    @cards.inject(0) do|point, card|
+    @cards.flatten.inject(0) do|point, card|
       point + card.point
     end
-rescue
-binding.pry
-raise
   end
 
   def play

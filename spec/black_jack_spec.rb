@@ -20,19 +20,19 @@ describe Player do
     it { is_expected.to eq 10 }
   end
 
-  describe "#burst?" do
+  describe "#bust?" do
     let(:player) { Player.new }
-    subject { player.burst? }
+    subject { player.bust? }
     it { should eq false}
 
-    context "is burst" do
+    context "is bust?" do
       before {
         player.cards << Card.new(100, :spade)
         player.cards << Card.new(100, :spade)
         player.cards << Card.new(100, :spade)
       }
 
-      it { expect(player.burst?).to eq true}
+      it { expect(player.bust?).to eq true}
     end
   end
 end

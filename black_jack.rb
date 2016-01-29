@@ -17,7 +17,7 @@ class Game
   end
 end
 
-class Dealer
+class Dealer < Player
   def initialize
     @all_cards = [:spade, :heart, :clover, :daiya].map do |mark|
       @cards = (1..13).map { |num| Card.new(num, mark) }
@@ -43,13 +43,13 @@ class Player
   end
 
   def play
-    if buta?
+    if bust?
     else
       @cards << dealer.deal
     end
   end
 
-  def buta?
+  def bust?
     stand > 21
   end
 end

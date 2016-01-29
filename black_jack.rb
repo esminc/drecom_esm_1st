@@ -21,11 +21,11 @@ class Dealer
   def initialize
     @all_cards = [:spade, :heart, :clover, :daiya].map do |mark|
       @cards = (1..13).map { |num| Card.new(num, mark) }
-    end
+    end.flatten
   end
 
   def deal
-    hand_cards = all_cards.pop(2)
+    hand_cards = @all_cards.pop(2)
   end
 end
 
@@ -40,6 +40,9 @@ class Player
     @cards.inject(0) do|point, card|
       point + card.point
     end
+rescue
+binding.pry
+raise
   end
 
   def play

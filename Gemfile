@@ -6,3 +6,4 @@ gem 'onkcop'
 gem 'rubocop'
 gem "guard"
 gem "guard-rspec"
+gem "pry"

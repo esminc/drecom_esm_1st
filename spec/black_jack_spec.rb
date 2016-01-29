@@ -11,6 +11,8 @@ describe Card do
 end
 
 describe Player do
+  let(:player) { Player.new }
+
   describe '#stand' do
     let(:cards) { [Card.new(10, :spade)] }
     let(:player) { Player.new(cards) }
@@ -21,18 +23,34 @@ describe Player do
   end
 
   describe "#bust?" do
-    let(:player) { Player.new }
     subject { player.bust? }
     it { should eq false}
 
     context "is bust?" do
       before {
-        player.cards << Card.new(100, :spade)
-        player.cards << Card.new(100, :spade)
-        player.cards << Card.new(100, :spade)
+        player.cards << Card.new(10, :spade)
+        player.cards << Card.new(10, :spade)
+        player.cards << Card.new(10, :spade)
       }
 
       it { expect(player.bust?).to eq true}
+    end
+  end
+
+  describe "want_card?" do
+    subject { player.want_card? }
+    context "buta?" do
+      before {
+        player.cards << Card.new(10, :spade)
+        player.cards << Card.new(10, :spade)
+      }
+      it { should eq false}
+    end
+    context "not buta?" do
+      before {
+        player.cards << Card.new(10, :spade)
+      }
+      it { should eq true}
     end
   end
 end

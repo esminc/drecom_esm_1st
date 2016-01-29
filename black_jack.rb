@@ -51,7 +51,7 @@ class Player
   end
 
   def want_card?
-    stand > 16
+    stand < 16
   end
 
   def bust?

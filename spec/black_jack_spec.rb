@@ -5,4 +5,8 @@ describe Card do
     let(:card) { }
     it { expect(1).to eq 1 }
   end
+
+  describe "#point" do |variable|
+    
+  end
 end

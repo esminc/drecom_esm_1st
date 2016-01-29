@@ -36,7 +36,7 @@ class Player
     @cards = cards
   end
 
-  def open
+  def stand
     @cards.inject(0) do|point, card|
       point + card.point
     end
@@ -50,7 +50,7 @@ class Player
   end
 
   def buta?
-    open < 21
+    stand > 21
   end
 end
 

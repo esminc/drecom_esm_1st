@@ -1,5 +1,6 @@
 require 'bundler'
 Bundler.require
 
-class A
+class Card
+  attr_accessor :number
 end

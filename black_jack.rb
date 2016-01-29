@@ -8,6 +8,7 @@ class Game
   end
 
   def start
+    @dealer.setup
     2.times do
       @players.each do |player|
         player.cards << @dealer.deal
@@ -28,6 +29,9 @@ end
 
 class Dealer
   def initialize
+  end
+
+  def setup
     @all_cards = [:spade, :heart, :clover, :daiya].map do |mark|
       @cards = (1..13).map { |num| Card.new(num, mark) }
     end.flatten.shuffle
